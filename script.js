@@ -122,7 +122,7 @@ document.addEventListener('keydown', handleKeyPress);
 
 
 
-// 6. SCORE MANAGEMENT ---> Songram
+// 6. SCORE MANAGEMENT ---> Shafi
 
 
 // Update current score
