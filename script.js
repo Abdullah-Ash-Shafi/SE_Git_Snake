@@ -1,12 +1,12 @@
 
 // 1. DOM ELEMENTS & GAME CONFIGURATION ---> Songram
 
-// HTML elements
-const board = document.getElementById();
-const instructionText = document.getElementById();
-const logo = document.getElementById();
-const score = document.getElementById();
-const highScoreText = document.getElementById();
+// HTML elements 
+const board = document.getElementById('game-board'); 
+const instructionText = document.getElementById('instruction-text'); 
+const logo = document.getElementById('logo'); 
+const score = document.getElementById('score'); 
+const highScoreText = document.getElementById('highScore')
 
 // Game configuration
 const gridSize = 20;
