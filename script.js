@@ -265,12 +265,25 @@ document.addEventListener('keydown', handleKeyPress);
 
 // Update current score
 function updateScore() {
+  const currentScore = snake.length - 1;
 
+  score.textContent = currentScore
+    .toString()
+    .padStart(3, '0');
 }
 
 
 // Update high score
 function updateHighScore() {
+  const currentScore = snake.length - 1;
 
+  if (currentScore > highScore) {
+    highScore = currentScore;
+
+    highScoreText.textContent = highScore
+      .toString()
+      .padStart(3, '0');
+  }
+
+  highScoreText.style.display = 'block';
 }
-
