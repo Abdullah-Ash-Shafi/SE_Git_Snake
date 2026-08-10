@@ -2,10 +2,10 @@
 // 1. DOM ELEMENTS & GAME CONFIGURATION ---> Songram
 
 // HTML elements 
-const board = document.getElementById('game-board'); 
-const instructionText = document.getElementById('instruction-text'); 
-const logo = document.getElementById('logo'); 
-const score = document.getElementById('score'); 
+const board = document.getElementById('game-board');
+const instructionText = document.getElementById('instruction-text');
+const logo = document.getElementById('logo');
+const score = document.getElementById('score');
 const highScoreText = document.getElementById('highScore')
 
 // Game configuration
@@ -33,31 +33,44 @@ let gameStarted = false;
 
 // Draw complete game board
 function draw() {
+    board.innerHTML = '';
 
+    drawSnake();
+    drawFood();
+    updateScore();
 }
 
-
-// Draw snake
 function drawSnake() {
+    snake.forEach((segment) => {
+        const snakeElement = createGameElement('div', 'snake');
 
+        setPosition(snakeElement, segment);
+
+        board.appendChild(snakeElement);
+    });
 }
 
-
-// Draw food
 function drawFood() {
- 
+    if (gameStarted) {
+        const foodElement = createGameElement('div', 'food');
+
+        setPosition(foodElement, food);
+
+        board.appendChild(foodElement);
+    }
 }
 
-
-// Create HTML element for snake/food
 function createGameElement(tag, className) {
-  
+    const element = document.createElement(tag);
+
+    element.className = className;
+
+    return element;
 }
 
-
-// Set position of snake/food
 function setPosition(element, position) {
-  
+    element.style.gridColumn = position.x;
+    element.style.gridRow = position.y;
 }
 
 
@@ -67,25 +80,25 @@ function setPosition(element, position) {
 
 // Generate food at a random position
 function generateFood() {
- 
+
 }
 
 
 // Move snake
 function move() {
-  
+
 }
 
 
 // Increase game speed
 function increaseSpeed() {
-  
+
 }
 
 
 // Check collision with wall or snake body
 function checkCollision() {
-  
+
 }
 
 
@@ -95,25 +108,25 @@ function checkCollision() {
 
 // Start the game
 function startGame() {
-  
+
 }
 
 
 // Stop the game
 function stopGame() {
-  
+
 }
 
 
 // Reset the game
 function resetGame() {
-  
+
 }
 
 
 // Handle keyboard input
 function handleKeyPress(event) {
-  
+
 }
 
 
