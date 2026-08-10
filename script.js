@@ -172,6 +172,42 @@ function checkCollision() {
   }
 }
 
+
+
+
+
+// 5. GAME CONTROL & USER INPUT  ---> Shafi
+
+
+// Start the game
+function startGame() {
+
+}
+
+
+// Stop the game
+function stopGame() {
+
+}
+
+
+// Reset the game
+function resetGame() {
+
+}
+
+
+// Handle keyboard input
+function handleKeyPress(event) {
+
+}
+
+
+// Keyboard event listener
+document.addEventListener('keydown', handleKeyPress);
+
+
+
 // 6. SCORE MANAGEMENT ---> Shafi
 
 
