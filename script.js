@@ -181,30 +181,82 @@ function checkCollision() {
 
 // Start the game
 function startGame() {
+  gameStarted = true;
 
+  instructionText.style.display = 'none';
+  logo.style.display = 'none';
+
+  gameInterval = setInterval(() => {
+    move();
+    checkCollision();
+    draw();
+  }, gameSpeedDelay);
 }
 
 
 // Stop the game
 function stopGame() {
+  clearInterval(gameInterval);
 
+  gameStarted = false;
+
+  instructionText.style.display = 'block';
+  logo.style.display = 'block';
 }
 
 
 // Reset the game
 function resetGame() {
+  updateHighScore();
 
+  stopGame();
+
+  snake = [{ x: 10, y: 10 }];
+  food = generateFood();
+
+  direction = 'right';
+
+  gameSpeedDelay = 200;
+
+  updateScore();
 }
 
 
 // Handle keyboard input
 function handleKeyPress(event) {
+  // Start game with Spacebar
+  if (
+    !gameStarted &&
+    (event.code === 'Space' || event.key === ' ')
+  ) {
+    startGame();
+    return;
+  }
 
+  // Change direction
+  switch (event.key) {
+    case 'ArrowUp':
+      direction = 'up';
+      break;
+
+    case 'ArrowDown':
+      direction = 'down';
+      break;
+
+    case 'ArrowLeft':
+      direction = 'left';
+      break;
+
+    case 'ArrowRight':
+      direction = 'right';
+      break;
+  }
 }
 
 
 // Keyboard event listener
 document.addEventListener('keydown', handleKeyPress);
+
 
 
 
