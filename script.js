@@ -80,60 +80,97 @@ function setPosition(element, position) {
 
 // Generate food at a random position
 function generateFood() {
+  const x = Math.floor(Math.random() * gridSize) + 1;
+  const y = Math.floor(Math.random() * gridSize) + 1;
 
+  return { x, y };
 }
 
 
 // Move snake
 function move() {
+  const head = { ...snake[0] };
 
+  switch (direction) {
+    case 'up':
+      head.y--;
+      break;
+
+    case 'down':
+      head.y++;
+      break;
+
+    case 'left':
+      head.x--;
+      break;
+
+    case 'right':
+      head.x++;
+      break;
+  }
+
+  // Add new head
+  snake.unshift(head);
+
+  // Check if snake ate food
+  if (head.x === food.x && head.y === food.y) {
+    food = generateFood();
+
+    increaseSpeed();
+
+    // Restart interval with new speed
+    clearInterval(gameInterval);
+
+    gameInterval = setInterval(() => {
+      move();
+      checkCollision();
+      draw();
+    }, gameSpeedDelay);
+  } else {
+    // Remove tail if food was not eaten
+    snake.pop();
+  }
 }
 
 
 // Increase game speed
 function increaseSpeed() {
-
+  if (gameSpeedDelay > 150) {
+    gameSpeedDelay -= 5;
+  } else if (gameSpeedDelay > 100) {
+    gameSpeedDelay -= 3;
+  } else if (gameSpeedDelay > 50) {
+    gameSpeedDelay -= 2;
+  } else if (gameSpeedDelay > 25) {
+    gameSpeedDelay -= 1;
+  }
 }
 
 
 // Check collision with wall or snake body
 function checkCollision() {
+  const head = snake[0];
 
+  // Wall collision
+  if (
+    head.x < 1 ||
+    head.x > gridSize ||
+    head.y < 1 ||
+    head.y > gridSize
+  ) {
+    resetGame();
+  }
+
+  // Snake body collision
+  for (let i = 1; i < snake.length; i++) {
+    if (
+      head.x === snake[i].x &&
+      head.y === snake[i].y
+    ) {
+      resetGame();
+    }
+  }
 }
-
-
-
-// 5. GAME CONTROL & USER INPUT  ---> Shafi
-
-
-// Start the game
-function startGame() {
-
-}
-
-
-// Stop the game
-function stopGame() {
-
-}
-
-
-// Reset the game
-function resetGame() {
-
-}
-
-
-// Handle keyboard input
-function handleKeyPress(event) {
-
-}
-
-
-// Keyboard event listener
-document.addEventListener('keydown', handleKeyPress);
-
-
 
 // 6. SCORE MANAGEMENT ---> Shafi
 
